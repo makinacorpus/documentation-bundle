@@ -20,12 +20,12 @@
     "prefer-stable" : true,
     "autoload" : {
         "psr-4" : {
-            "MakinaCorpus\\DocumentationBundle\\" : "src/"
+            "MakinaCorpus\\DocumentationBundle\\" : ""
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MakinaCorpus\\DocumentationBundle\\Tests\\": "tests/"
+            "MakinaCorpus\\DocumentationBundle\\Tests\\": "Tests/"
         }
     },
     "require" : {
