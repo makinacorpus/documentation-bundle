@@ -1,5 +1,6 @@
 {
     "name" : "makinacorpus/documentation-bundle",
+    "version" : "dev-master",
     "type": "symfony-bundle",
     "description": "Provide inline documentation within sites",
     "keywords": ["symfony", "documentation"],
