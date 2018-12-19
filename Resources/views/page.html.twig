@@ -1,0 +1,50 @@
+{% import "@Documentation/tree-macros.html.twig" as tree %}
+
+{% block body %}
+<div class="container documentation documentation-page">
+    {% block breadcrumb %}
+    <div class="row">
+        <div class="col-sm-12">
+            {{ tree.breadcrumb(index, page) }}
+        </div>
+    </div>
+    {% endblock %}
+    {% block content %}
+    <div class="row">
+        {% if page.virtual %}
+            <div class="col-sm-12">
+                <h1>{{ page.title|e }}</h1>
+                <ul class="nav nav-stacked">
+                    {% for child in index.getChildren(page.path) %}
+                        <li>
+                            <a href="{{ path('documentation_page', {path: child.path}) }}">
+                                {{ child.title }}
+                            </a>
+                            {{ tree.tree(index, child) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% elseif page.withToc %}
+            <div class="col-md-4 col-sm-12">
+               {# {{ controller('MakinaCorpus\DocumentationBundle\Controller::toc', {path: page.path}) }} #}
+               <p>Ici, bientôt, une table des matières.</p>
+            </div>
+            <div class="col-md-8 col-sm-12">
+                {% if page.withTitle %}
+                    <h1>{{ page.title|e }}</h1>
+                {% endif %}
+                {{ contents|raw }}
+            </div>
+        {% else %}
+            <div class="col-sm-12">
+                {% if page.withTitle %}
+                    <h1>{{ page.title|e }}</h1>
+                {% endif %}
+                {{ contents|raw }}
+            </div>
+        {% endif %}
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% import "@Documentation/tree-macros.html.twig" as tree %}
+
+{% block body %}
+<div class="container documentation documentation-index">
+    {% block breadcrumb %}
+    <div class="row">
+        <div class="col-sm-12">
+            {{ tree.breadcrumb(index) }}
+        </div>
+    </div>
+    {% endblock %}
+    {% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ "Documentation"|trans }}</h1>
+
+            <ul class="nav nav-stacked">
+                {% for page in index.rootPages %}
+                    <li>
+                        <a href="{{ path('documentation_page', {path: page.path}) }}">
+                            {{ page.title }}
+                        </a>
+                        {{ tree.tree(index, page) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}

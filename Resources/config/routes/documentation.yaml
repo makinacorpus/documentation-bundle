@@ -1,0 +1,10 @@
+
+documentation_index:
+    path: /documentation
+    controller: MakinaCorpus\DocumentationBundle\Controller\DocumentationController::index
+
+documentation_page:
+    path: /documentation/{path}
+    controller: MakinaCorpus\DocumentationBundle\Controller\DocumentationController::page
+    requirements:
+        path: "^.+"

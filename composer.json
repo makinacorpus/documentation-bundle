@@ -1,0 +1,41 @@
+{
+    "name" : "makinacorpus/documentation-bundle",
+    "type": "symfony-bundle",
+    "description": "Provide inline documentation within sites",
+    "keywords": ["symfony", "documentation"],
+    "homepage": "http://github.com/makinacorpus/documentation-bundle",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name" : "Makina Corpus",
+            "homepage": "http://makina-corpus.com"
+        },
+        {
+            "name" : "Pierre RINEAU",
+            "email" : "pierre.rineau@processus.org"
+        }
+    ],
+    "minimum-stability" : "dev",
+    "prefer-stable" : true,
+    "autoload" : {
+        "psr-4" : {
+            "MakinaCorpus\\DocumentationBundle\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MakinaCorpus\\DocumentationBundle\\Tests\\": "tests/"
+        }
+    },
+    "require" : {
+        "symfony/dependency-injection": "^3.4 || ^4",
+        "php" : ">=7.1"
+    },
+    "suggest" : {
+        "jolicode/jolitypo": "Applies rule based typographic correction of documentation output",
+        "makinacorpus/php-header-fixer": "Fixes titles/headers hierarchy in documentation output"
+    },
+    "require-dev" : {
+        "phpunit/phpunit" : "7.*"
+    }
+}

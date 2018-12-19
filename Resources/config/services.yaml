@@ -1,0 +1,8 @@
+services:
+
+    MakinaCorpus\DocumentationBundle\Controller\DocumentationController:
+        public: false
+        tags: ['controller.service_arguments']
+
+    MakinaCorpus\DocumentationBundle\PageRenderer:
+        public: false

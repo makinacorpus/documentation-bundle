@@ -1,0 +1,35 @@
+{% macro tree(index, page) %}
+    {% import _self as tree %}
+    {% set children = index.children(page.path) %}
+    {% if children|length %}
+        <ul>
+            {% for child in children %}
+                <li>
+                    <a href="{{ path('documentation_page', {path: child.path}) }}">
+                        {{ child.title }}
+                    </a>
+                    {{ tree.tree(index, child) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro breadcrumb(index, page) %}
+    {% if page %}
+        {% set trail = index.getTrailBefore(page.path) %}
+    {% else %}
+        {% set trail = [] %}
+    {% endif %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('documentation_index') }}">{{ "Documentation"|trans }}</a></li>
+        {% if trail|length %}
+            {% for child in trail %}
+                <li><a href="{{ path('documentation_page', {path: child.path}) }}">{{ child.title }}</a></li>
+            {% endfor %}
+        {% endif %}
+        {% if page %}
+            <li class="active">{{ page.title }}</li>
+        {% endif %}
+    </ol>
+{% endmacro %}
