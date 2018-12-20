@@ -10,6 +10,8 @@ First install it:
 ```sh
 composer require makinacorpus/documentation-bundle
 ```
+**Note** that you have to add `https://github.com/makinacorpus/documentation-bundle` as a repository
+in your composer.json first.
 
 Create a foo documentation file:
 
@@ -26,9 +28,31 @@ Hello, World!
 Then register the bundle in your `bundles.php` file:
 
 ```php
+<?php
+
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Config\Loader\LoaderInterface;
+
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = [
+            ...
+
+            new MakinaCorpus\DocumentationBundle\DocumentationBundle(),
+
+            ...
+        ];
+
+        ...
+
+        return $bundles;
+    }
 ```
 
-Minimum configuration:
+Add this minimum configuration in your config.yml:
 
 ```yaml
 documentation:
@@ -39,7 +63,7 @@ documentation:
             title: Test section     # Displayed title in table of contents
             virtual: true           # Virtual page will be a table of content page
 
-        docs/test/hello-world.md    # Real file path
+        docs/test/hello-world.md:   # Real file path
             path: test/hello        # Logical documentation path (tree is built upon it)
             title: Hello, World!    # Displayed title in table of contents
 ```
@@ -96,5 +120,5 @@ As of now, you may only place:
  - plain html using the `.html` file name suffix,
  - markdown files, with either `.md` or `.markdown` file name suffix.
 
-@todo make this 
+@todo make this
 
